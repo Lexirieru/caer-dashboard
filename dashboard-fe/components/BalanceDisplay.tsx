@@ -1,6 +1,6 @@
 'use client';
 
-import { useAccount, useBalance } from 'wagmi';
+import { useBalance } from 'wagmi';
 import { mainnet, bsc, arbitrum, optimism, avalanche, base, linea, sepolia, bscTestnet, arbitrumSepolia, optimismSepolia, avalancheFuji, baseSepolia } from 'wagmi/chains';
 
 // Define Core mainnet
@@ -206,19 +206,11 @@ const testnetChains = [
 
 interface BalanceDisplayProps {
   isTestnet: boolean;
+  walletAddress: string;
 }
 
-export function BalanceDisplay({ isTestnet }: BalanceDisplayProps) {
-  const { address, isConnected } = useAccount();
+export function BalanceDisplay({ isTestnet, walletAddress }: BalanceDisplayProps) {
   const chains = isTestnet ? testnetChains : mainnetChains;
-
-  if (!isConnected || !address) {
-    return (
-      <div className="text-center text-white/60">
-        Connect your wallet to view balances
-      </div>
-    );
-  }
 
   return (
     <div className="overflow-x-auto">
@@ -236,7 +228,7 @@ export function BalanceDisplay({ isTestnet }: BalanceDisplayProps) {
               chainId={chain.id}
               chainName={chain.name}
               symbol={chain.symbol}
-              address={address}
+              address={walletAddress as `0x${string}`}
             />
           ))}
         </tbody>
