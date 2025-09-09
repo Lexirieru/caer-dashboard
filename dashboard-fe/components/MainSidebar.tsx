@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import { Sidebar, SidebarBody } from "./ui/sidebar";
 import {
   IconServer,
@@ -99,9 +100,11 @@ export const Logo = () => {
       href="#"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black dark:text-white"
     >
-      <img 
+      <Image 
         src="/caerwhitecut.png" 
         alt="Caer Logo" 
+        width={24}
+        height={20}
         className="h-5 w-6 shrink-0 object-contain"
       />
       <span className="font-medium whitespace-pre text-black dark:text-white">
@@ -117,9 +120,11 @@ export const LogoIcon = () => {
       href="#"
       className="relative z-20 flex items-center justify-center w-full py-1 text-sm font-normal text-black dark:text-white"
     >
-      <img 
+      <Image 
         src="/caerwhitecut.png" 
         alt="Caer Logo" 
+        width={24}
+        height={20}
         className="h-5 w-6 shrink-0 object-contain"
       />
     </a>
@@ -277,9 +282,11 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                 rel="noopener noreferrer"
                 className="hover:opacity-80 transition-opacity cursor-pointer"
               >
-                <img
+                <Image
                   src={token.image}
                   alt={token.name}
+                  width={48}
+                  height={48}
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-contain"
                 />
               </a>
@@ -314,9 +321,11 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-white/20 text-white border border-white/30 hover:bg-white/30"
               >
-                <img
-                  src={availableChains.find(c => c.id === selectedChain)?.image}
-                  alt={availableChains.find(c => c.id === selectedChain)?.name}
+                <Image
+                  src={availableChains.find(c => c.id === selectedChain)?.image || ''}
+                  alt={availableChains.find(c => c.id === selectedChain)?.name || ''}
+                  width={20}
+                  height={20}
                   className="w-5 h-5 rounded-full"
                 />
                 <IconChevronDown className="h-4 w-4 transition-transform duration-200 flex-shrink-0" style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
@@ -337,9 +346,11 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                           : 'text-white/80'
                       }`}
                     >
-                      <img
+                      <Image
                         src={chain.image}
                         alt={chain.name}
+                        width={20}
+                        height={20}
                         className="w-5 h-5 rounded-full"
                       />
                       {chain.name}
@@ -358,18 +369,22 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
             <div className="flex-shrink-0">
               {isLoading ? (
                 <div className="relative">
-                  <img
+                  <Image
                     src={getTokenImage(token.id, availableChains.find(c => c.id === selectedChain)?.chainId || currentChainIds.arbitrum)}
                     alt={`${token.name} on ${availableChains.find(c => c.id === selectedChain)?.name}`}
+                    width={40}
+                    height={40}
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-contain opacity-50"
                   />
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full border-2 border-white animate-pulse"></div>
                 </div>
               ) : error ? (
                 <div className="relative opacity-50">
-                  <img
+                  <Image
                     src={getTokenImage(token.id, availableChains.find(c => c.id === selectedChain)?.chainId || currentChainIds.arbitrum)}
                     alt={`${token.name} on ${availableChains.find(c => c.id === selectedChain)?.name}`}
+                    width={40}
+                    height={40}
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-contain"
                   />
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>
@@ -383,9 +398,11 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                   title={`Bridge Sender: ${bridgeSender as string}`}
                 >
                   <div className="relative">
-                    <img
+                    <Image
                       src={getTokenImage(token.id, availableChains.find(c => c.id === selectedChain)?.chainId || currentChainIds.arbitrum)}
                       alt={`${token.name} on ${availableChains.find(c => c.id === selectedChain)?.name}`}
+                      width={40}
+                      height={40}
                       className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-contain"
                     />
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
@@ -393,9 +410,11 @@ const OnchainSummerPage = ({ sidebarOpen }: { sidebarOpen: boolean }) => {
                 </a>
               ) : (
                 <div className="relative opacity-50">
-                  <img
+                  <Image
                     src={getTokenImage(token.id, availableChains.find(c => c.id === selectedChain)?.chainId || currentChainIds.arbitrum)}
                     alt={`${token.name} on ${availableChains.find(c => c.id === selectedChain)?.name}`}
+                    width={40}
+                    height={40}
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-contain"
                   />
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></div>

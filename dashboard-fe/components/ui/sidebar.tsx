@@ -105,7 +105,7 @@ export const DesktopSidebar = ({
         
         {/* Content with proper padding and layout */}
         <div className="relative z-10 w-full h-full px-4 py-4 flex flex-col">
-          {children}
+          {children as React.ReactNode}
         </div>
       </motion.div>
     </>
